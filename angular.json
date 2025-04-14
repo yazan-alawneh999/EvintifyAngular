@@ -1,0 +1,110 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "Eventify": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/eventify",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "zone.js",
+            "tsConfig": "tsconfig.app.json",
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": [
+              "@angular/material/prebuilt-themes/purple-green.css",
+              "src/styles.css",
+              "src/assets/AdminDash/css/bootstrap.min.css",
+              "src/assets/AdminDash/demo/demo.css",
+              "src/assets/AdminDash/css/paper-dashboard.css",
+              "src/assets/TablesTemplate/css/argon-dashboard.css"
+            ],
+            "scripts": [
+              "src/assets/AdminDash/js/core/jquery.min.js",
+              "src/assets/AdminDash/js/core/popper.min.js",
+              "src/assets/AdminDash/js/core/bootstrap.min.js",
+              "src/assets/AdminDash/js/plugins/perfect-scrollbar.jquery.min.js",
+              "src/assets/AdminDash/js/plugins/chartjs.min.js",
+              "src/assets/AdminDash/js/plugins/bootstrap-notify.js",
+              "src/assets/AdminDash/js/paper-dashboard.min.js",
+              "src/assets/AdminDash/demo/demo.js",
+              "src/assets/TablesTemplate/js/core/popper.min.js",
+              "src/assets/TablesTemplate/js/core/bootstrap.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "aot": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "Eventify:build:production"
+            },
+            "development": {
+              "browserTarget": "Eventify:build:development"
+            }
+          },
+          "options": {
+            "browserTarget": "Eventify:build"
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "Eventify:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": ["zone.js", "zone.js/testing"],
+            "tsConfig": "tsconfig.spec.json",
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": [
+              "@angular/material/prebuilt-themes/purple-green.css",
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
+  }
+}

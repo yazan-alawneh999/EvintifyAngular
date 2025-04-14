@@ -1,0 +1,8 @@
+<router-outlet></router-outlet>
+<div class="loading-container" *ngIf="loading$ | async">
+  <mat-spinner
+    *ngIf="loading$ | async"
+    type="indeterminate"
+    value="100%"
+  ></mat-spinner>
+</div>

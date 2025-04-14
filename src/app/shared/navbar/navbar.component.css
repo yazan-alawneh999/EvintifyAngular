@@ -1,0 +1,57 @@
+::ng-deep div.sidebar-wrapper{
+    background-color: #8000ff49!important;
+    overflow: scroll; 
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+}
+
+::ng-deep div.logo{
+    background-color: #8000ff49!important;
+}
+
+
+::ng-deep li.active {
+    background-color: #f1f1f1; 
+    border-left: 5px solid ;
+    border-color: #7f00ff!important;
+    border-radius: 10px;
+    margin-left: 2px;
+    
+}
+
+
+
+::ng-deep p.navFont{
+    font-size: medium;
+    font-weight: 400;
+    color: #2e2d2d;
+} 
+
+::ng-deep li.active p.navFont{
+    font-size: medium;
+    font-weight: 550;
+    color: #7f00ff;
+} 
+
+
+
+::ng-deep li i.nc-icon{
+    color: #2e2d2d!important;    
+    font-weight: 600;
+} 
+
+::ng-deep li.active i.nc-icon{
+    color: #7f00ff!important;    
+    font-weight: 700;
+} 
+
+
+::ng-deep li:hover i.nc-icon{
+    color: #7f00ff!important;    
+    font-weight: 600;
+}
+::ng-deep li:hover p.navFont{
+    font-size:medium;
+    font-weight:600;
+    color: #7f00ff;
+}

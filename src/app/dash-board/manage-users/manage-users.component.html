@@ -1,0 +1,52 @@
+<div class="wrapper">
+  <app-side-bar></app-side-bar>
+
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+
+    <div class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">All Registerd User</h4>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class="text-primary text-center">
+                    <th>Id</th>
+                    <th>UserName</th>
+                    <th>Role</th>
+                    <th>Profile</th>
+                  </thead>
+                  <tbody class="text-center">
+                    <tr *ngFor="let user of users; let i = index">
+                      <td>
+                        {{ i + 1 }}
+                      </td>
+                      <td>
+                        {{ user.username }}
+                      </td>
+                      <td>
+                        {{ user.role.roleName }}
+                      </td>
+                      <td>
+                        <button
+                          class="btn btn-primary"
+                          (click)="viewProfile(user.userid)"
+                        >
+                          show profile
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

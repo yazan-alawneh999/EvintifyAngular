@@ -1,0 +1,77 @@
+<div class="wrapper">
+  <app-side-bar></app-side-bar>
+
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+
+    <div class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+
+            <div class="card-header">
+              <h4 class="card-title">Total Revenue: {{total}}$</h4>
+            </div>
+
+            <div class="chartContainer col-12">
+              <canvas class="m-2" id="myChart"></canvas>
+              <canvas class="m-2 mt-5" id="PieChart"></canvas>
+            </div>
+
+            <div class="col-12" style="display: flex; justify-content: center;">
+              <button class="btn btn-primary col-6" (click)="downloadPDF()">Download Report</button>
+            </div>
+
+
+          </div>
+
+          <div id="EventsTable" class="card">
+            <div class="card-header">
+              <h4 class="card-title">Attendance Report:</h4>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary text-center ">
+                  <th>Event ID</th>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Status</th>
+                </thead>
+                <tbody class="text-center">
+                  <tr class="TableRow" *ngFor="let event of AllEvents" (click)="getAttendanceReport(event.eventID)">
+                    <td>{{ event.eventID }}</td>
+                    <td>{{ event.eventName }}</td>
+                    <td>{{ event.eventType }}</td>
+                    <td>{{ event.eventStatus }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+
+          <div id="AttendanceTable" class="card">
+            <div class="table-responsive" *ngIf="EventsAttendance!=null">
+              <table class="table">
+                <thead class="text-primary text-center">
+                  <th>Event Name</th>
+                  <th>Sold Tickets</th>
+                  <th>Attendance</th>
+                </thead>
+                <tbody class="text-center">
+                  <tr>
+                    <td>{{ EventsAttendance.eventname }}</td>
+                    <td>{{ EventsAttendance.totaL_TICKETS }}</td>
+                    <td>{{ EventsAttendance.attendance }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

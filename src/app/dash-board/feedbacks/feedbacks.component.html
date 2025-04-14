@@ -1,0 +1,104 @@
+<div class="wrapper">
+  <app-side-bar></app-side-bar>
+  <div class="content">
+    <div class="main-panel">
+      <app-navbar></app-navbar>
+
+
+      <div class="content" >
+
+
+        <div class="row">
+          <div class="col-md-12">
+
+
+
+            <div class="card ps-2">
+
+              <div class="card-header">
+                <h4 class="card-title">Events:</h4>
+              </div>
+
+
+
+
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="text-primary text-center ">
+                      <th>Event ID</th>
+                      <th>Name</th>
+                      <th>Type</th>
+                    </thead>
+                    <tbody class="text-center">
+                      <tr class="TableRow" *ngFor="let element of EventReport" (click)="selectRow(element)">
+                        
+                        <td>{{element.eventid}}</td>
+
+                        <td>{{ element.eventName }}</td>
+
+                        <td>{{element.checkIn_rates}}
+                          <span class="stars">{{ getStars(element.eRating) }}</span>
+                        </td>
+                        
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+
+
+            </div>
+
+
+
+            <div class="table-responsive" *ngIf="selectedRow!=null">
+            <div class="card p-3">
+
+              
+
+              <div  *ngIf="selectedRow.parsedFeedbackDetails.length > 0; else noFeedback">
+                <div class="card-header">
+                  <h4 class="card-title">Events:</h4>
+                  <h4>Event Name: {{selectedRow.eventName}}</h4>
+                </div>
+
+                  <table class="table">
+                    <tr>
+                      <th>Photo</th>
+                      <th>Name</th>
+                      <th>Age</th>
+                      <th>Message</th>
+                      <th>Time</th>
+                    </tr>
+
+                    <tr class="TableRow" *ngFor="let feedback of selectedRow.parsedFeedbackDetails">
+                      <td>
+                        <img [src]="feedback.user.profileImage" alt="User Image" width="50" height="50"
+                          onerror="this.src='../../../assets/AdminDash/img/default-avatar.png'">
+                      </td>
+                      <td>{{feedback.user.firstName}} {{feedback.user.lastName}} </td>
+                      <td>{{feedback.user.age}}</td>
+                      <td>{{feedback.message}}</td>
+                      <td>{{ feedback.feedbackDate | date: 'dd/MM/yyyy hh:mm a' }}</td>
+  
+                    </tr>
+                  </table>
+                </div>
+
+                <ng-template #noFeedback>
+                  <div class="card-header">
+                    <h4>No Feedbacks on this Event yet</h4>
+                  </div>
+                </ng-template>
+
+              
+                
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
