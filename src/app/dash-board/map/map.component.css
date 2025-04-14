@@ -1,0 +1,32 @@
+.map-container {
+  height: 600px;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card {
+  margin: 20px;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #343a40;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+}
+
+.map-container {
+  height: 600px;
+  width: 100%;
+  border-radius: 8px;
+  z-index: 0;
+}
+
+.leaflet-control-geocoder-icon {
+  background-image: url(../../../assets/AdminDash/img/event.jpeg);
+}

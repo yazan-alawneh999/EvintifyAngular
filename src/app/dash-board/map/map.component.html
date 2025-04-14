@@ -1,26 +1,103 @@
+<div class="wrapper">
+  <app-side-bar></app-side-bar>
 
-<div class="wrapper ">
-    <app-side-bar></app-side-bar>
-    
-    <div class="main-panel">
+  <div class="main-panel">
     <app-navbar></app-navbar>
-    
-    
-<div class="content">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card ">
-          <div class="card-header ">
-            Google Maps
-          </div>
-          <div class="card-body ">
-            <div id="map" class="map"></div>
+
+    <div class="content">
+      <div class="row justify-content-center">
+        <div class="col-md-11">
+          <div class="card shadow-lg">
+            <div class="card-body">
+              <!-- Filters -->
+              <div class="row mb-4">
+                <div class="col-md-6">
+                  <label for="typeFilter" class="form-label"
+                    >Filter by Type:</label
+                  >
+                  <select
+                    id="typeFilter"
+                    class="form-select"
+                    [(ngModel)]="selectedType"
+                    (change)="filterEvents()"
+                  >
+                    <option value="">All Types</option>
+                    <option value="Conference">Conference</option>
+                    <option value="Concert">Concert</option>
+                    <option value="Exhibition">Exhibition</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="statusFilter" class="form-label"
+                    >Filter by Status:</label
+                  >
+                  <select
+                    id="statusFilter"
+                    class="form-select"
+                    [(ngModel)]="selectedStatus"
+                    (change)="filterEvents()"
+                  >
+                    <option value="">All Statuses</option>
+                    <option value="Progressed">Progressed</option>
+                    <option value="Active">Active</option>
+                    <option value="Cancelled">Cancelled</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Map + Event Cards -->
+              <div class="row">
+                <!-- Map -->
+                <div class="col-md-8 mb-4">
+                  <div
+                    id="map"
+                    style="height: 600px; border-radius: 10px"
+                    class="shadow-sm"
+                  ></div>
+                </div>
+
+                <!-- Event Cards -->
+                <div class="col-md-4">
+                  <div *ngIf="filteredEvents.length > 0; else noEvents">
+                    <div
+                      *ngFor="let event of filteredEvents"
+                      class="card mb-3 border-primary shadow-sm"
+                    >
+                      <div class="card-body">
+                        <h5 class="card-title text-primary">
+                          {{ event.eventName }}
+                        </h5>
+                        <p><strong>Type:</strong> {{ event.eventType }}</p>
+                        <p><strong>Status:</strong> {{ event.eventStatus }}</p>
+                        <p>
+                          <strong>Date:</strong> {{ event.eventDate | date }}
+                        </p>
+                        <p>
+                          <strong>Time:</strong>
+                          {{ event.eventTime | date : "shortTime" }}
+                        </p>
+                        <p><strong>Capacity:</strong> {{ event.capacity }}</p>
+                        <p><strong>Price:</strong> ${{ event.price }}</p>
+                        <p>
+                          <strong>Location:</strong>
+                          {{ event.location.address }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <ng-template #noEvents>
+                    <p class="text-center text-muted">
+                      No events match your filters.
+                    </p>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <app-footer></app-footer>
     </div>
   </div>
-  
-  <app-footer></app-footer>
-</div>
 </div>
