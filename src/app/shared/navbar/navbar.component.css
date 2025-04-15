@@ -1,5 +1,6 @@
 ::ng-deep div.sidebar-wrapper{
-    background-color: #8000ff49!important;
+    background: linear-gradient(to bottom, #8000ff49,#2f284ed7)!important;
+    /* background-color: #8000ff49!important; */
     overflow: scroll; 
     scrollbar-width: none; 
     -ms-overflow-style: none;
@@ -10,33 +11,34 @@
 }
 
 
+
 ::ng-deep li.active {
-    background-color: #f1f1f1; 
-    border-left: 5px solid ;
-    border-color: #7f00ff!important;
-    border-radius: 10px;
-    margin-left: 2px;
-    
+    background-size: 100% 100%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 
 
 ::ng-deep p.navFont{
     font-size: medium;
-    font-weight: 400;
-    color: #2e2d2d;
+    color: #000000c9;
+    font-family: "ZCOOL XiaoWei", sans-serif;
+    font-weight: 600;
+    font-style: normal;
 } 
 
 ::ng-deep li.active p.navFont{
     font-size: medium;
-    font-weight: 550;
+    font-weight: 600;
     color: #7f00ff;
+    
 } 
 
 
 
 ::ng-deep li i.nc-icon{
-    color: #2e2d2d!important;    
+    color: #000000fd!important;    
     font-weight: 600;
 } 
 
@@ -54,4 +56,23 @@
     font-size:medium;
     font-weight:600;
     color: #7f00ff;
+}
+
+
+::ng-deep li{
+    background-image: linear-gradient(to left, #8000ff49,#ffffffec);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    background-position-x: left;
+    transition: background-size 500ms ease-in-out;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+::ng-deep li:hover{
+    background-size: 100% 100%;
+}
+
+::ng-deep li:active{
+    background-size: 100% 100%;
 }

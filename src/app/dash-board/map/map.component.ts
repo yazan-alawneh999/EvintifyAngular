@@ -3,6 +3,7 @@ import * as L from 'leaflet';
 import 'leaflet-control-geocoder';
 import 'leaflet.locatecontrol';
 import { MapeventService } from 'src/app/services/mapevent.service';
+import { HttpClient } from '@angular/common/http';
 
 declare module 'leaflet' {
   namespace control {
@@ -27,7 +28,7 @@ export class MapComponent implements OnInit {
   selectedType = '';
   selectedStatus = '';
 
-  constructor(private mapEventService: MapeventService) {
+  constructor(private mapEventService: MapeventService,private http: HttpClient) {
     this.mapEventService.getMapEvents().subscribe(
       (data: any) => {
         this.events = data;
@@ -39,6 +40,7 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.GetAllEvents();
     this.initMap();
   }
 
@@ -71,13 +73,13 @@ export class MapComponent implements OnInit {
     L.control.layers(baseLayers).addTo(this.map);
     L.control.scale().addTo(this.map);
 
-    // ✅ إضافة مربع البحث
+    
     // @ts-ignore
     const geocoder = L.Control.geocoder({
       defaultMarkGeocode: true,
     }).addTo(this.map);
 
-    // ✅ زر لتحديد الموقع الحالي
+    
     const locateControl = L.control.locate({ position: 'topleft' });
     locateControl.onAdd = () => {
       const div = L.DomUtil.create(
@@ -106,8 +108,8 @@ export class MapComponent implements OnInit {
     const bounds = L.latLngBounds([]);
 
     const eventIcon = L.icon({
-      iconUrl: '../../../assets/AdminDash/img/event-list.png',
-      iconSize: [32, 32],
+      iconUrl: '../../../assets/AdminDash/img/MapPin.png',
+      iconSize: [42, 32],
       iconAnchor: [16, 32],
       popupAnchor: [0, -30],
     });
@@ -121,7 +123,7 @@ export class MapComponent implements OnInit {
       const marker = L.marker(latlng, { icon: eventIcon }).addTo(this.map)
         .bindPopup(`
         <div style="min-width: 220px;">
-          <img src="../../../assets/AdminDash/img/evetnd.jpeg" alt="${event.eventName}" style="width: 100%; height: auto; border-radius: 6px; margin-bottom: 5px;" />
+          <img src="../../../assets/AdminDash/img/logo.png" alt="${event.eventName}" style="width: 100%; height: auto; border-radius: 6px; margin-bottom: 5px;" />
           <h4 style="margin: 0;">${event.eventName}</h4>
           <p><strong>Type:</strong> ${event.eventType}</p>
           <p><strong>Status:</strong> ${event.eventStatus}</p>
@@ -142,10 +144,25 @@ export class MapComponent implements OnInit {
     this.filteredEvents = this.events.filter((event) => {
       return (
         (this.selectedType === '' || event.eventType === this.selectedType) &&
-        (this.selectedStatus === '' ||
-          event.eventStatus === this.selectedStatus)
+        (this.selectedStatus === '' || event.eventStatus === this.selectedStatus)
       );
     });
     this.loadMarkers();
   }
+
+
+  EventsTypes: any = [];
+  getAllEventsApi='https://localhost:7065/api/Event/GetAllEvent';
+  GetAllEvents(){
+    this.http.get<any>(this.getAllEventsApi).subscribe(
+      (response) => {
+        this.EventsTypes = [...new Map(response.map((event: any) => [event.eventType, event])).values()];
+      },
+      (error) => {
+        console.error('Error fetching data:', error);
+        alert('Failed to fetch data');
+      }
+    )
+  }
+
 }

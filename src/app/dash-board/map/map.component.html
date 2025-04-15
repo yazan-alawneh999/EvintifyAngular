@@ -21,11 +21,11 @@
                     [(ngModel)]="selectedType"
                     (change)="filterEvents()"
                   >
-                    <option value="">All Types</option>
-                    <option value="Conference">Conference</option>
-                    <option value="Concert">Concert</option>
-                    <option value="Exhibition">Exhibition</option>
-                  </select>
+                  <option value="">All Types</option>
+                  <option *ngFor="let type of EventsTypes" [value]="type.eventType">
+                    {{ type.eventType }}
+                  </option>
+                </select>
                 </div>
                 <div class="col-md-6">
                   <label for="statusFilter" class="form-label"
@@ -39,7 +39,7 @@
                   >
                     <option value="">All Statuses</option>
                     <option value="Progressed">Progressed</option>
-                    <option value="Active">Active</option>
+                    <option value="Completed">Completed</option>
                     <option value="Cancelled">Cancelled</option>
                   </select>
                 </div>
