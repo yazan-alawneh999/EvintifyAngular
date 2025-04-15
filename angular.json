@@ -25,7 +25,11 @@
               "src/assets/AdminDash/css/bootstrap.min.css",
               "src/assets/AdminDash/demo/demo.css",
               "src/assets/AdminDash/css/paper-dashboard.css",
-              "src/assets/TablesTemplate/css/argon-dashboard.css"
+              "src/assets/TablesTemplate/css/argon-dashboard.css",
+              "node_modules/leaflet/dist/leaflet.css",
+              "node_modules/leaflet-control-geocoder/dist/Control.Geocoder.css",
+              "node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css",
+              "src/styles.css"
             ],
             "scripts": [
               "src/assets/AdminDash/js/core/jquery.min.js",
@@ -37,7 +41,10 @@
               "src/assets/AdminDash/js/paper-dashboard.min.js",
               "src/assets/AdminDash/demo/demo.js",
               "src/assets/TablesTemplate/js/core/popper.min.js",
-              "src/assets/TablesTemplate/js/core/bootstrap.min.js"
+              "src/assets/TablesTemplate/js/core/bootstrap.min.js",
+              "node_modules/leaflet/dist/leaflet.js",
+              "node_modules/leaflet-control-geocoder/dist/Control.Geocoder.js",
+              "node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.js"
             ]
           },
           "configurations": {
