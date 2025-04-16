@@ -15,4 +15,6 @@ export class UserService {
       'https://localhost:7065/api/event-manager/admin-dashboard/AllRegisteredUsers'
     );
   }
+
+
 }
