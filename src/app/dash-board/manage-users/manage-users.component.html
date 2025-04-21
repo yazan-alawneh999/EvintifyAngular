@@ -45,17 +45,22 @@
                         {{ user.role.roleName }}
                       </td>
                       <td>
-                        <button
-                          *ngIf="user.profileID"
-                          class="btn btn-primary"
-                          type="button"
-                          (click)="viewProfile(user.userid)"
-                        >
-                          Show Profile
-                        </button>
-                        <span *ngIf="!user.profileID" class="text-danger label">
+                        <div style="display: flex;flex-direction: row; gap: 8px;justify-content: center;align-content: center">
+                          <button
+                            *ngIf="user.profileID"
+                            class="btn btn-primary btn-fill"
+                            type="button"
+                            (click)="viewProfile(user.userid)"
+                          >
+                            Show Profile
+                          </button>
+                          <span *ngIf="!user.profileID" class="text-danger label" style="display: flex;align-items: center">
   Profile not completed
 </span>
+                          <button class="btn btn-danger" type="button"
+                          (click)="onDelete(user.userid)">Delete</button>
+                        </div>
+
                       </td>
                     </tr>
                   </tbody>
