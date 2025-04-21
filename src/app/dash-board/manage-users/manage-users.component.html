@@ -10,6 +10,19 @@
           <div class="card">
             <div class="card-header">
               <h4 class="card-title">All Registerd User</h4>
+              <div class="btn-group" role="group" aria-label="Export Buttons">
+                <button class="btn btn-outline-secondary btn-sm" (click)="exportToCSV()">
+                  <i class="bi bi-file-earmark-spreadsheet"></i> CSV
+                </button>
+                <button class="btn btn-outline-danger btn-sm" (click)="exportToPDF()">
+                  <i class="bi bi-filetype-pdf"></i> PDF
+                </button>
+                <button class="btn btn-outline-primary btn-sm" (click)="exportToWord()">
+                  <i class="bi bi-file-earmark-word"></i> Word
+                </button>
+                <button class="btn btn-outline-dark btn-sm" (click)="printTable()">
+                  <i class="bi bi-printer"></i> Print
+                </button>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -33,11 +46,16 @@
                       </td>
                       <td>
                         <button
+                          *ngIf="user.profileID"
                           class="btn btn-primary"
+                          type="button"
                           (click)="viewProfile(user.userid)"
                         >
-                          show profile
+                          Show Profile
                         </button>
+                        <span *ngIf="!user.profileID" class="text-danger label">
+  Profile not completed
+</span>
                       </td>
                     </tr>
                   </tbody>
