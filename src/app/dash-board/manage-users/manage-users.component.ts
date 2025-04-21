@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
-import { User } from './user';
-import { NavController } from 'src/app/services/NavController';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from 'src/app/services/user.service';
+import {User} from './user';
+import {NavController} from 'src/app/services/NavController';
+import {ActivatedRoute} from '@angular/router';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import * as FileSaver from 'file-saver';
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-manage-users',
@@ -16,8 +17,11 @@ export class ManageUsersComponent implements OnInit {
   constructor(
     private userService: UserService,
     private controller: NavController
-  ) {}
+  ) {
+  }
+
   users: User[] = [];
+
   ngOnInit(): void {
     this.getRegisteredUsers();
   }
@@ -48,7 +52,7 @@ export class ManageUsersComponent implements OnInit {
       csvContent += rowArray.join(',') + '\n';
     });
 
-    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const blob = new Blob([csvContent], {type: 'text/csv'});
     FileSaver.saveAs(blob, 'users.csv');
   }
 
@@ -83,6 +87,26 @@ export class ManageUsersComponent implements OnInit {
       printWindow.document.write('</body></html>');
       printWindow.document.close();
       printWindow.print();
+    }
+  }
+
+  onDelete(userId: number) {
+    try {
+      this.userService.deleteUser(userId).subscribe({
+        next: (response) => {
+          alert(response.message);
+        }
+        ,
+        error: (erro: any) => {
+          alert(erro);
+        }
+        ,
+        complete: () => {
+
+        }
+      })
+    } catch (e) {
+      console.error(e);
     }
   }
 }

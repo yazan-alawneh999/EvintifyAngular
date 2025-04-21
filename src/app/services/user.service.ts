@@ -16,5 +16,12 @@ export class UserService {
     );
   }
 
+  deleteUser(userId:number): Observable<any> {
+    debugger;
+    return this.http.delete(
+      `https://localhost:7065/api/event-manager/auth/delete/${userId}`
+    );
+  }
+
 
 }
