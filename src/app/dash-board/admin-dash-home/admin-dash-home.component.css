@@ -1,0 +1,29 @@
+canvas {
+    max-width: 100%;
+    max-height: 200px;
+    margin-inline: 10PX;
+}
+
+::ng-deep .btn-primary{
+    background-color: #8000ff62;
+}
+
+::ng-deep .btn-primary:hover{
+    background-color: #7f00ff!important;
+}
+
+::ng-deep .btn-primary:focus{
+    background-color: #8000ff62!important;
+}
+
+
+.chartContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.TableRow:hover{
+    background-color: #8000ff62;
+}

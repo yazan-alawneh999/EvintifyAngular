@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.sessionManager.isLoggedIn()) {
-      this.navController.navigate('/DashBoardPages/Reports');
+      this.navController.navigate('/DashBoardPages/home');
     } else {
       this.navController.navigate('/SecurityPages/SignIn');
     }
