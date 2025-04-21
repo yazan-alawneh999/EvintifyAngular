@@ -32,11 +32,6 @@ export class SideBarComponent {
       icon: 'nc-icon nc-badge',
     },
     {
-      label: 'Reports',
-      route: '/DashBoardPages/Reports',
-      icon: 'nc-icon nc-tile-56',
-    },
-    {
       label: 'Feedback',
       route: '/DashBoardPages/Feedback',
       icon: 'nc-icon nc-caps-small',
