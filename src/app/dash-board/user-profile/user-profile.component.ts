@@ -16,6 +16,7 @@ import {Role} from "../manage-users/Role";
 export class UserProfileComponent implements OnInit {
   userId!: number;
   usrProfile: any;
+
   roles: Role[] = [];
   selectedImageFile: File | null = null;
   previewImage: string | null = null;
@@ -63,10 +64,24 @@ showToast: boolean = false;
       reader.readAsDataURL(file);
     }
   }
-  async urlToFile(url: string, filename: string): Promise<File> {
-    const response = await fetch(url);
-    const blob = await response.blob();
-    return new File([blob], filename, { type: blob.type });
+  // async urlToFile(url: string, filename: string): Promise<File> {
+  //   const response = await fetch(url);
+  //   const blob = await response.blob();
+  //   return new File([blob], filename, { type: blob.type });
+  // }
+
+  async urlToFile(url: string, filename: string): Promise<File | null> {
+    if (!url) return null;
+
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Fetch failed: ' + response.statusText);
+      const blob = await response.blob();
+      return new File([blob], filename, { type: blob.type });
+    } catch (err) {
+      console.error("Failed to convert URL to file:", err);
+      return null;
+    }
   }
 
   async  updateUserForm(data: any) {
@@ -127,43 +142,57 @@ showToast: boolean = false;
 
    this.showProgressbar = true
    const formData = new FormData();
-
-   if (this.selectedImageFile) {
-     formData.append('ImageFile', this.selectedImageFile);
-   } else  {
-     const imageUrl = this.usrProfile.profileImage;
-     const fallbackFile = await this.urlToFile(imageUrl, 'profile.jpg');
-     formData.append('ImageFile', fallbackFile);
-   }
+try {
+  if (this.selectedImageFile) {
+    formData.append('ImageFile', this.selectedImageFile);
+  } else  {
+    const imageUrl = this.usrProfile.profileImage;
+    const fallbackFile = await this.urlToFile(imageUrl, 'profile.jpg');
+    formData.append('ImageFile', fallbackFile!);
+  }
 
 // Append the rest of the fields
-   Object.entries(this.profileForm.value).forEach(([key, value]) => {
-     if (key !== 'ImageFile') {
-       formData.append(key, value ?? '');
-     }
-   });
+  Object.entries(this.profileForm.value).forEach(([key, value]) => {
+    if (key !== 'ImageFile') {
+      formData.append(key, value ?? '');
+    }
+  });
 
-
-    console.log(this.profileForm.value);
-    this.http.put(`https://localhost:7065/api/event-manager/admin-dashboard/UpdateProfile/${this.userId}`,
-      formData)
-      .subscribe({
+debugger;
+  console.log(this.profileForm.value);
+  this.http.put(`https://localhost:7065/api/event-manager/admin-dashboard/UpdateProfile/${this.userId}`,
+    formData)
+    .subscribe({
       next: (data: any) => {
-        // window.location.reload();
+        this.showToast = true;
+        this.showProgressbar = false;
+        alert("updated successfully");
 
-        this.showToast = true
-        this.showProgressbar = false
+        // Auto-hide toast after 3 seconds
+        setTimeout(() => {
+          this.showToast = false;
+        }, 3000);
       },
-        error: (err:any) => {
-        alert(err.message())
-          this.showProgressbar = false
-        },
-        complete: () => {
+      error: (err: any) => {
+        // const errorMessage = err?.error?.message || err?.message || 'Something went wrong';
+        // alert(errorMessage);
+        this.showProgressbar = false;
+        debugger;
+      },
+      complete: () => {
         this.showToast = false
-          this.showProgressbar = false
-        }
+        this.showProgressbar = false
+        debugger;
+      }
 
     })
+
+}catch (e){
+  this.showProgressbar = false
+  debugger;
+
+}
+
 
   }
 }

@@ -117,3 +117,27 @@ body {
   cursor: pointer;
   border: solid 1px #BA68C8
 }
+
+.toast-container {
+  position: fixed;
+  z-index: 9999;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+
+.toast {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.toast.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.toast.hide {
+  opacity: 0;
+  visibility: hidden;
+}
