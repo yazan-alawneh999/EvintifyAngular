@@ -5,7 +5,7 @@ import { DashBoardModule } from './dash-board/dash-board.module';
 import { SecurityModule } from './security/security.module';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/SecurityPages/SignIn', pathMatch: 'full' },
+  { path: '', redirectTo: 'SecurityPages/SignIn', pathMatch: 'full' },
 
   {
     path: 'DashBoardPages',

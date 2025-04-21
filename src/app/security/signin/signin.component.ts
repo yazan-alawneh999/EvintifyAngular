@@ -32,9 +32,10 @@ export class SigninComponent {
     this.auth.login(this.loginForm.value).subscribe({
       next: (response: any) => {
         this.jwtService.saveToken(response.token);
+        this.jwtService.saveUserId(response.userId);
 
         this.loginForm.reset();
-        this.navcontroller.navigate('/DashBoardPages/home');
+        this.navcontroller.navigate('/DashBoardPages/Reports');
       },
       error: (err) => {
         console.error('Login error:', err);

@@ -12,13 +12,13 @@ import { ReportsComponent } from './report/report.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'Reports',
     pathMatch: 'full',
   },
-  {
-    path: 'home',
-    component: AdminDashHomeComponent,
-  },
+  // {
+  //   path: 'home',
+  //   component: AdminDashHomeComponent,
+  // },
   {
     path: 'UserProfile',
     component: UserProfileComponent,

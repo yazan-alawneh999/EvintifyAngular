@@ -16,7 +16,7 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
 export class ManageUsersComponent implements OnInit {
   constructor(
     private userService: UserService,
-    private controller: NavController
+    private controller: NavController,
   ) {
   }
 
@@ -88,6 +88,10 @@ export class ManageUsersComponent implements OnInit {
       printWindow.document.close();
       printWindow.print();
     }
+  }
+
+  isCurrentUser(userId: number): boolean {
+    return this.userService.isCurrentUser(userId);
   }
 
   onDelete(userId: number) {
