@@ -23,5 +23,9 @@ export class UserService {
     );
   }
 
+  isCurrentUser(userId:number): boolean{
+    return userId === this.session.getCurrentUser();
+  }
+
 
 }

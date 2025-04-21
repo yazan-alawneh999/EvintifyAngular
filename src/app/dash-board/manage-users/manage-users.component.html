@@ -39,7 +39,12 @@
                         {{ i + 1 }}
                       </td>
                       <td>
-                        {{ user.username }}
+                        <div style="display: flex;flex-direction: row; justify-content: center;gap: 6px">
+
+                          {{ user.username }}
+                          <span *ngIf="isCurrentUser(user.userid)" class="comment text-primary">(you)</span>
+
+                        </div>
                       </td>
                       <td>
                         {{ user.role.roleName }}
@@ -57,7 +62,7 @@
                           <span *ngIf="!user.profileID" class="text-danger label" style="display: flex;align-items: center">
   Profile not completed
 </span>
-                          <button class="btn btn-danger" type="button"
+                          <button *ngIf="!isCurrentUser(user.userid)" class="btn btn-danger" type="button"
                           (click)="onDelete(user.userid)">Delete</button>
                         </div>
 
@@ -72,4 +77,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

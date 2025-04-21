@@ -31,14 +31,15 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(authReq).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
+        const token = this.sessionService.getToken();
+
+        if (error.status === 401 && token) {
           console.error('Unauthorized - Token expired or invalid');
-          window.alert('your session has expired ');
-          this.sessionService.logout(); // Automatically log out user
+          window.alert('Your session has expired.');
+          this.sessionService.logout(); // Redirects to login or clears session
         }
-        return throwError(() => {
-          new Error(error.message);
-        });
+
+        return throwError(() => new Error(error.message));
       })
     );
   }

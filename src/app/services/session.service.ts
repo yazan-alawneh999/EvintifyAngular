@@ -9,12 +9,22 @@ import { NavController } from './NavController';
 export class SessionService {
   constructor(private navController: NavController) {}
   private readonly TOKEN_KEY = 'jwtToken';
+  private readonly USERID = 'userId';
   private jwtHelper = new JwtHelperService();
 
   // Store the token
   saveToken(token: string): void {
     debugger;
     localStorage.setItem(this.TOKEN_KEY, token);
+  }
+
+  saveUserId(userId: number): void {
+    localStorage.setItem(this.USERID, userId.toString()); // Convert number to string
+  }
+
+  getCurrentUser(): number {
+    const userId = localStorage.getItem(this.USERID);
+    return userId ? parseInt(userId, 10) : 0; // Convert back to number safely
   }
 
   // Retrieve the token

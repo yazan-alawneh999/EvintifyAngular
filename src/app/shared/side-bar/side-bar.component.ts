@@ -9,23 +9,25 @@ import { SessionService } from 'src/app/services/session.service';
 })
 export class SideBarComponent {
   menuItems = [
-    { label: 'Dashboard', route: '/home', icon: 'nc-icon nc-bank' },
-    {
-      label: 'User Profile',
-      route: '/DashBoardPages/UserProfile',
-      icon: 'nc-icon nc-circle-10',
-    },
-    {
-      label: 'Notifications',
-      route: '/DashBoardPages/Notifi',
-      icon: 'nc-icon nc-bell-55',
-    },
+    { label: 'Dashboard', route: '/DashBoardPages/Reports', icon: 'nc-icon nc-bank' },
+    // {
+    //   label: 'User Profile',
+    //   route: '/DashBoardPages/UserProfile',
+    //   icon: 'nc-icon nc-circle-10',
+    // },
+    // {
+    //   label: 'Notifications',
+    //   route: '/DashBoardPages/Notifi',
+    //   icon: 'nc-icon nc-bell-55',
+    // },
     {
       label: 'Events',
-      route: '/DashBoardPages/Events',
+      // route: '/DashBoardPages/Events',
+      route: '/DashBoardPages/Map',
       icon: 'nc-icon nc-diamond',
     },
-    { label: 'Maps', route: '/DashBoardPages/Map', icon: 'nc-icon nc-pin-3' },
+    // { label: 'Maps', route: '/DashBoardPages/Map', icon: 'nc-icon nc-pin-3' }
+
     {
       label: 'Manage Users',
       route: '/DashBoardPages/Users',
